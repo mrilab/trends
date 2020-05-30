@@ -1,4 +1,4 @@
-from numpy import (arange, linspace)
+from numpy import (arange, linspace, logspace)
 from sklearn.pipeline import make_pipeline
 from sklearn.preprocessing import StandardScaler
 from sklearn.decomposition import PCA
@@ -17,7 +17,7 @@ def get_model():
         ),
         param_grid={
             "pca__n_components": arange(0.5, 1, 0.05),
-            "elasticnet__alpha": 4 ** linspace(-5., 5., 11),
+            "elasticnet__alpha": logspace(-5, 5, 11, base=4),
             "elasticnet__l1_ratio": linspace(0, 1, 11),
         },
         scoring="r2",
